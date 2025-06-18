@@ -16,6 +16,7 @@ numpy
 langchain
 langgraph
 ollama
+langchain-community
 
 # === Vector Store for RAG ===
 chromadb

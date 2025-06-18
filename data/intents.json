@@ -1,0 +1,77 @@
+{
+  "greet": {
+    "examples": [
+      "hello",
+      "hi there",
+      "hey",
+      "good morning",
+      "good evening"
+    ]
+  },
+  "get_time": {
+    "examples": [
+      "what time is it",
+      "tell me the current time",
+      "can you tell the time",
+      "current time please"
+    ]
+  },
+  "get_weather": {
+    "examples": [
+      "what's the weather",
+      "tell me the weather",
+      "weather forecast",
+      "how's the weather today",
+      "show me weather",
+      "is it raining"
+    ]
+  },
+  "tell_joke": {
+    "examples": [
+      "tell me a joke",
+      "make me laugh",
+      "something funny please",
+      "do you know any jokes"
+    ]
+  },
+  "exit": {
+    "examples": [
+      "exit",
+      "quit",
+      "shutdown",
+      "close the assistant"
+    ]
+  },
+  "open_app": {
+  "examples": [
+    "open notepad",
+    "start calculator",
+    "launch chrome",
+    "open google chrome",
+    "start visual studio",
+    "open vscode",
+    "open command prompt",
+    "launch word",
+    "start excel",
+    "open powerpoint",
+    "open paint"
+  ]
+},
+"close_app": {
+  "examples": [
+    "close notepad",
+    "close calculator",
+    "kill chrome",
+    "close google chrome",
+    "close visual studio",
+    "terminate vscode",
+    "close command prompt",
+    "close word",
+    "kill excel",
+    "close powerpoint"
+  ]
+}
+
+
+  
+}
