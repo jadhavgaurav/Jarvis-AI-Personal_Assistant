@@ -1,0 +1,31 @@
+# === Core ===
+python-dotenv
+loguru
+
+# === Voice Interface ===
+vosk
+pyttsx3
+pvporcupine
+
+# === ML Classifier ===
+scikit-learn
+nltk
+numpy
+
+# === Agentic AI + LLM ===
+langchain
+langgraph
+ollama
+
+# === Vector Store for RAG ===
+chromadb
+sentence-transformers
+tqdm
+
+# === System Integration ===
+pyautogui
+psutil
+# === Miscellaneous ===
+requests
+# === Testing ===
+pytest
