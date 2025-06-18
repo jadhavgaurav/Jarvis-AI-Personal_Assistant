@@ -1,41 +1,54 @@
 import os
 import json
-import joblib
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.linear_model import LogisticRegression
+import numpy as np
+from sentence_transformers import SentenceTransformer, util
+
 
 class IntentClassifier:
-    def __init__(self):
-        self.vectorizer_path = "data/tfidf_vectorizer.pkl"
-        self.model_path = "data/intent_classifier.pkl"
+    def __init__(self, threshold=0.6):
+        self.intents_path = "data/intents.json"
+        self.model_name = "all-MiniLM-L6-v2"
+        self.threshold = threshold
 
-        self.vectorizer = joblib.load(self.vectorizer_path)
-        self.model = joblib.load(self.model_path)
+        # Load sentence transformer
+        self.encoder = SentenceTransformer(self.model_name)
+
+        # Load intents and prepare embeddings
+        self.intents, self.intent_embeddings = self._load_intents()
+
+    def _load_intents(self):
+        if not os.path.exists(self.intents_path):
+            raise FileNotFoundError(f"[❌] Missing intents file: {self.intents_path}")
+
+        with open(self.intents_path, "r", encoding="utf-8") as f:
+            raw_intents = json.load(f)
+
+        intents = {}
+        all_sentences = []
+        for intent, data in raw_intents.items():
+            examples = data.get("examples", [])
+            intents[intent] = examples
+            all_sentences.extend(examples)
+
+        embeddings = self.encoder.encode(all_sentences, convert_to_tensor=True)
+
+        # Map sentence idx → intent
+        sentence_to_intent = []
+        for intent, examples in intents.items():
+            sentence_to_intent.extend([intent] * len(examples))
+
+        return sentence_to_intent, embeddings
 
     def predict(self, query: str) -> str:
-        X = self.vectorizer.transform([query])
-        return self.model.predict(X)[0]
+        query_embedding = self.encoder.encode(query, convert_to_tensor=True)
+        scores = util.cos_sim(query_embedding, self.intent_embeddings)[0]  # shape: (n_examples,)
+        best_score = float(scores.max())
+        best_index = int(scores.argmax())
+        predicted_intent = self.intents[best_index]
 
-def train_intent_classifier():
-    with open("data/intents.json") as f:
-        intents = json.load(f)
+        print(f"[🔍] Predicted Intent: {predicted_intent} (Confidence: {best_score:.2f})")
 
-    X, y = [], []
-    for intent, data in intents.items():
-        for example in data["examples"]:
-            X.append(example.lower())
-            y.append(intent)
+        if best_score < self.threshold:
+            return "unknown"
 
-    vectorizer = TfidfVectorizer()
-    X_vec = vectorizer.fit_transform(X)
-
-    model = LogisticRegression()
-    model.fit(X_vec, y)
-
-    joblib.dump(vectorizer, "data/tfidf_vectorizer.pkl")
-    joblib.dump(model, "data/intent_classifier.pkl")
-    print("✅ Intent classifier trained and saved to [data/] folder.")
-
-
-if __name__ == "__main__":
-    train_intent_classifier()
+        return predicted_intent

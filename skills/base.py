@@ -1,11 +1,12 @@
-# Abstract base class for all skill modules
+# skills/base.py
 
-class BaseSkill:
-    def __init__(self):
-        self.name = self.__class__.__name__
+from abc import ABC, abstractmethod
 
+class BaseSkill(ABC):
+    @abstractmethod
     def can_handle(self, intent: str) -> bool:
-        raise NotImplementedError
+        pass
 
+    @abstractmethod
     def handle(self, query: str) -> str:
-        raise NotImplementedError
+        pass

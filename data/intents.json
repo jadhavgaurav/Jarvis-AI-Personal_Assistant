@@ -1,12 +1,6 @@
 {
   "greet": {
-    "examples": [
-      "hello",
-      "hi there",
-      "hey",
-      "good morning",
-      "good evening"
-    ]
+    "examples": ["hello", "hi there", "hey", "good morning", "good evening"]
   },
   "get_time": {
     "examples": [
@@ -35,43 +29,52 @@
     ]
   },
   "exit": {
-    "examples": [
-      "exit",
-      "quit",
-      "shutdown",
-      "close the assistant"
-    ]
+    "examples": ["exit", "quit", "shutdown", "close the assistant"]
   },
   "open_app": {
-  "examples": [
-    "open notepad",
-    "start calculator",
-    "launch chrome",
-    "open google chrome",
-    "start visual studio",
-    "open vscode",
-    "open command prompt",
-    "launch word",
-    "start excel",
-    "open powerpoint",
-    "open paint"
-  ]
-},
-"close_app": {
-  "examples": [
-    "close notepad",
-    "close calculator",
-    "kill chrome",
-    "close google chrome",
-    "close visual studio",
-    "terminate vscode",
-    "close command prompt",
-    "close word",
-    "kill excel",
-    "close powerpoint"
-  ]
-}
+    "examples": [
+      "open notepad",
+      "start calculator",
+      "launch chrome",
+      "open google chrome",
+      "start visual studio",
+      "open vscode",
+      "open command prompt",
+      "launch word",
+      "start excel",
+      "open powerpoint",
+      "open paint"
+    ]
+  },
+  "close_app": {
+    "examples": [
+      "close notepad",
+      "close calculator",
+      "kill chrome",
+      "close google chrome",
+      "close visual studio",
+      "terminate vscode",
+      "close command prompt",
+      "close word",
+      "kill excel",
+      "close powerpoint"
+    ]
+  },
 
-
-  
+  "doc_qa": {
+    "examples": [
+      "what does my resume say",
+      "what does my file say",
+      "summarize my profile",
+      "summarize my document",
+      "tell me about my skills",
+      "what projects have I worked on",
+      "what does the document say about blockchain",
+      "What does the document say about income tax?",
+      "Summarize the contents of the uploaded file.",
+      "Tell me about the document",
+      "Answer from the document",
+      "Can you explain something in the file?"
+    ]
+  }
 }
